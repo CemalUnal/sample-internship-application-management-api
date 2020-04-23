@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+
+  mongodb:
+    image: mongo:3.6.10
+    container_name: mongodb
+    restart: on-failure
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+
+  sample-internship-management-api:
+    build: .
+    container_name: sample-internship-management-api
+    restart: on-failure
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017
+    depends_on:
+      - mongodb
+    ports:
+    - "8080:8080"
+
+  mongo_seed:
+    image: mongo:3.6.10
+    volumes:
+      - ./mongo-seed:/mongo-seed
+    command:
+      /mongo-seed/import.sh
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data: {}

@@ -1,0 +1,5 @@
+vendor/
+Dockerfile
+.git/
+docker-compose.yml
+README.md
