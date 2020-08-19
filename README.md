@@ -1,4 +1,4 @@
-# **Sample Internship Management Api**
+# **Sample Internship Application Management Api**
 
 ## Repository Structure
 
